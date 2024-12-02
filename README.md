@@ -6,7 +6,7 @@ Berikut merupakan skema database yang dibuat melalui postgresql
 ![image](https://github.com/user-attachments/assets/e0dd2b30-3a4f-493f-aa38-58ad7e5beb42)
 
 
-'''sql
+'''bash
 BEGIN;
 
 
@@ -33,3 +33,4 @@ ALTER TABLE IF EXISTS public.karyawan
     NOT VALID;
 
 END;
+'''
