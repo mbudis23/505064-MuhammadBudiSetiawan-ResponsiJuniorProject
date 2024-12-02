@@ -11,8 +11,17 @@ using System.Windows.Forms;
 
 namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
 {
+    internal class Person
+    {
+        public string nama;
+    }
+    internal class Employee: Person
+    {
+        public int id_dep;
+    }
     public partial class Form1 : Form
     {
+        Employee employee;
         private NpgsqlConnection conn;
         private NpgsqlCommand cmd;
         private string sql;
@@ -22,6 +31,9 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
         {
             InitializeComponent();
             LoadData();
+            employee = new Employee();
+            employee.id_dep = cb_dept.SelectedIndex;
+            employee.nama = tb_empName.Text;
         }
         private void LoadData()
         {
@@ -47,6 +59,12 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
             }
         }
 
+        private void GetData()
+        {
+            employee.id_dep = cb_dept.SelectedIndex;
+            employee.nama = tb_empName.Text;
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
@@ -69,6 +87,7 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
                 MessageBox.Show("Fill Departement");
                 return;
             }
+            GetData();
             try
             {
                 conn = new NpgsqlConnection(connectionString);
@@ -87,8 +106,8 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
                         sql = @"INSERT INTO karyawan (id_karyawan, nama, id_dep) VALUES (@id, @nama, @id_dep);";
                         cmd = new NpgsqlCommand(sql, conn);
                         cmd.Parameters.AddWithValue("@id", 0);
-                        cmd.Parameters.AddWithValue("@nama", tb_empName.Text);
-                        cmd.Parameters.AddWithValue("@id_dep", cb_dept.SelectedIndex);
+                        cmd.Parameters.AddWithValue("@nama", employee.nama);
+                        cmd.Parameters.AddWithValue("@id_dep", employee.id_dep);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Insert Employ Success");
                     }
@@ -97,8 +116,8 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
                         sql = @"INSERT INTO karyawan (id_karyawan, nama, id_dep) VALUES (@id, @nama, @id_dep);";
                         cmd = new NpgsqlCommand(sql, conn);
                         cmd.Parameters.AddWithValue("@id", Convert.ToInt32(max) + 1);
-                        cmd.Parameters.AddWithValue("@nama", tb_empName.Text);
-                        cmd.Parameters.AddWithValue("@id_dep", cb_dept.SelectedIndex);
+                        cmd.Parameters.AddWithValue("@nama", employee.nama);
+                        cmd.Parameters.AddWithValue("@id_dep", employee.id_dep);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Insert Employ Success");
                     }
@@ -133,6 +152,7 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
             if (dgv.CurrentRow != null)
             {
                 int id = int.Parse(dgv.CurrentRow.Cells["id_karyawan"].Value.ToString());
+                GetData();
                 try
                 {
                     conn = new NpgsqlConnection(connectionString);
@@ -140,8 +160,8 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
                     sql = @"UPDATE karyawan SET nama=@nama, id_dep = @id_dep WHERE id_karyawan=@id;";
                     cmd = new NpgsqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@nama", tb_empName.Text);
-                    cmd.Parameters.AddWithValue("@id_dep", cb_dept.SelectedIndex);
+                    cmd.Parameters.AddWithValue("@nama", employee.nama);
+                    cmd.Parameters.AddWithValue("@id_dep", employee.id_dep);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Update Success");
                 } 
