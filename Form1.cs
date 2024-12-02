@@ -183,7 +183,7 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
 
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == 0)
+            if (e.RowIndex >= 0 && e.RowIndex<=dgv.Rows.Count)
             {
                 try
                 {
