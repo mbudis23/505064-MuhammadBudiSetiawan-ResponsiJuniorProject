@@ -114,7 +114,7 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
                 } 
                 else
                 {
-                    MessageBox.Show("Employ Duplicated");
+                    MessageBox.Show("Employee Duplicated");
                 }
             }
             catch (Exception ex)
@@ -201,7 +201,7 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
                     cmd = new NpgsqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Update Success");
+                    MessageBox.Show("Delete Success");
                 }
                 catch (Exception ex)
                 {
