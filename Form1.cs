@@ -25,7 +25,7 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
         private NpgsqlConnection conn;
         private NpgsqlCommand cmd;
         private string sql;
-        private string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=12345678;Database=responsijuniorproject";
+        readonly private string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=12345678;Database=responsijuniorproject";
         private DataTable dt;
         public Form1()
         {
@@ -63,16 +63,6 @@ namespace _505064_MuhammadBudiSetiawan_ResponsiJuniorProject
         {
             employee.id_dep = cb_dept.SelectedIndex;
             employee.nama = tb_empName.Text;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void lbl_empName_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_insert_Click(object sender, EventArgs e)

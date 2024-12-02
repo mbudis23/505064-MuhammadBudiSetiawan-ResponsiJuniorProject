@@ -68,7 +68,6 @@
             this.lbl_empName.Size = new System.Drawing.Size(85, 13);
             this.lbl_empName.TabIndex = 2;
             this.lbl_empName.Text = "Nama Karyawan";
-            this.lbl_empName.Click += new System.EventHandler(this.lbl_empName_Click);
             // 
             // tb_empName
             // 
@@ -76,7 +75,6 @@
             this.tb_empName.Name = "tb_empName";
             this.tb_empName.Size = new System.Drawing.Size(312, 20);
             this.tb_empName.TabIndex = 3;
-            this.tb_empName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lbl_empDept
             // 
